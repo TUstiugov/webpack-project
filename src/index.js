@@ -1,3 +1,5 @@
+import './styles/index.scss';
+
 const recipe = {
   milk: 1,
   water: 2,
