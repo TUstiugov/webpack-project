@@ -1,5 +1,7 @@
 const path = require('path');
 
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 let mode = 'development';
@@ -15,6 +17,9 @@ module.exports = {
   target: target,
 
   output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].[contenthash].js',
+    clean: true,
     assetModuleFilename: 'assets/[name].[hash][ext]',
   },
 
@@ -48,7 +53,13 @@ module.exports = {
     ],
   },
   plugins: [
+    // new CleanWebpackPlugin(),
     new MiniCssExtractPlugin(),
+    new HtmlWebpackPlugin({
+      title: 'Webpack Project',
+      filename: 'index.html',
+      template: './src/template.html',
+    }),
   ],
   devtool: 'source-map',
   devServer: {
